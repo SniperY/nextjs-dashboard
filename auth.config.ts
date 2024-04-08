@@ -1,12 +1,13 @@
 import type { NextAuthConfig } from 'next-auth';
-
+// 该对象包含NextAuth.js的配置项
 export const authConfig = {
+    // 自定义登录页面，添加后不再重定向到NextAuth.js默认页面
     pages: {
         signIn: '/login',
     },
+    // 阻止用户在未登录时访问dashboard
     callbacks: {
-        //The authorized callback is used to verify 
-        //if the request is authorized to access a page via Next.js Middleware. 
+        //The authorized callback is used to verify if the request is authorized to access a page via Next.js Middleware. 
         //It is called before a request is completed, 
         //and it receives an object with the auth and request properties. 
         //The auth property contains the user's session, 

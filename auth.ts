@@ -1,3 +1,4 @@
+// 为bcrypt包单独声明一个文件，因为bcrypt依赖的API在中间件中不可用
 import NextAuth from 'next-auth';
 import { authConfig } from './auth.config';
 import Credentials from 'next-auth/providers/credentials';
@@ -18,7 +19,9 @@ async function getUser(email: string): Promise<User | undefined> {
 
 export const { auth, signIn, signOut } = NextAuth({
     ...authConfig,
+    // providers是一个列举不同登录选项的数组，如使用Google、GitHub登录
     providers: [
+        // Credentials provider允许用户使用用户名和密码登录
         Credentials({
             async authorize(credentials) {
                 const parsedCredentials = z
